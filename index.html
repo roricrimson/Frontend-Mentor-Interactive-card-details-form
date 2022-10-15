@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+
+  <title>Frontend Mentor | Interactive card details form</title>
+
+</head>
+
+<body>
+  <div class="credit_card">
+    <img class="credit_card-back" src="./images/bg-card-back.png" alt="">
+    <img class="credit_card-front" src="./images/bg-card-front.png" alt="">
+    <img class="credit_card-logo" src="./images/card-logo.svg" alt="" srcset="">
+    <h2 class="credit_card-number">0000 0000 0000 0000</h2>
+    <p class="credit_card-name">Jane Appleseed</p>
+    <p class="credit_card-date"><span class="credit_card-month">00</span>/<span class="credit_card-year">00</span></p>
+    <p class="credit_card-cvc">000</p>
+
+  </div>
+  <form>
+    <div>
+      <p>Cardholder Name</p>
+      <input class="input--large" id="input_card-name" type="text" placeholder="e.g. Jane Appleseed" required>
+      <p class="err-mesage">Can't be blank</p>
+    </div>
+    <div>
+      <p>Card Number</p>
+      <input class="input--large" id="input_card-number" type="text" placeholder="e.g. 1234 5678 9123 0000"
+        maxlength="19" required>
+      <p class="err-mesage">Wrong format, number only</p>
+    </div>
+    <div class="flex">
+      <div>
+        <p>Exp. Date (MM/YY)</p>
+        <div class="flex">
+          <div>
+            <input class="input--small" id="input_card-month" type="number" placeholder="MM" min="1" max="12" required>
+            <p class="err-mesage">Can't be blank</p>
+          </div>
+          <div>
+            <input class="input--small" id="input_card-year" type="number" placeholder="YY" min="1900" max="2022"
+              step="1" required>
+            <p class="err-mesage">Can't be blank</p>
+          </div>
+        </div>
+      </div>
+      <div class="margin-left">
+        <p>CVC</p>
+        <input class="input--medium" id="input_card-cvc" type="text" placeholder="e.g. 123" maxlength="3" required>
+        <p class="err-mesage">Can't be blank</p>
+      </div>
+    </div>
+    <button type="button" id="btn">Confirm</button>
+  </form>
+
+  <div class="thank-you">
+    <img src="./images/icon-complete.svg" alt="">
+    <h2>Thank you!</h2>
+    <p>We've added your card details</p>
+    <button>Continue</button>
+  </div>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="https://github.com/roricrimson">RoriCrimson</a>.
+  </div>
+
+  <script>
+    const inputCardName = document.querySelector("#input_card-name")
+    const inputCardNumber = document.querySelector("#input_card-number")
+    const inputCardMonth = document.querySelector("#input_card-month")
+    const inputCardYear = document.querySelector("#input_card-year")
+    const inputCardCvc = document.querySelector("#input_card-cvc")
+    const btn = document.querySelector("#btn")
+
+    const creditCardName = document.querySelector(".credit_card-name")
+    const creditCardNumber = document.querySelector(".credit_card-number")
+    const creditCardMonth = document.querySelector(".credit_card-month")
+    const creditCardYear = document.querySelector(".credit_card-year")
+    const creditCardCvc = document.querySelector(".credit_card-cvc")
+
+    const thankYou = document.querySelector(".thank-you")
+    const form = document.querySelector("form")
+
+    inputCardName.onblur = () => {
+      renderInputValue(creditCardName, inputCardName.value, 'Jane Appleseed', inputCardName)
+    }
+
+    inputCardNumber.onblur = () => {
+      renderInputValue(creditCardNumber, inputCardNumber.value, '0000 0000 0000 0000', inputCardNumber)
+    }
+
+    inputCardMonth.onblur = () => { renderInputValue(creditCardMonth, inputCardMonth.value, '00', inputCardMonth) }
+    inputCardYear.onblur = () => { renderInputValue(creditCardYear, inputCardYear.value, '00', inputCardYear) }
+    inputCardCvc.onblur = () => {
+      renderInputValue(creditCardCvc, inputCardCvc.value, '000', inputCardCvc)
+    }
+
+
+    inputCardName.oninput = () => {
+      const val = inputCardName.value.replace(/[^A-Za-z'.]/g, '');
+      inputCardName.value = val;
+      renderInputValue(creditCardName, val, 'Jane Appleseed', inputCardName)
+    }
+    inputCardNumber.oninput = () => {
+      const matches = inputCardNumber.value.replace(/[ ]/g, '').match(/.{1,4}/g)
+      let val = ''
+      if (matches) {
+        val = matches.join(' ')
+      }
+      inputCardNumber.value = val
+      renderInputValue(creditCardNumber, val, '0000 0000 0000 0000', inputCardNumber)
+
+      if (/[^0-9]/.test(inputCardNumber.value)) {
+        inputCardNumber.classList.add('invalid')
+      }
+    }
+    inputCardMonth.oninput = () => {
+      renderInputValue(creditCardMonth, inputCardMonth.value, '00', inputCardMonth)
+    }
+    inputCardYear.oninput = () => { renderInputValue(creditCardYear, inputCardYear.value, '00', inputCardYear) }
+    inputCardCvc.oninput = () => {
+      const val = inputCardCvc.value.replace(/[^0-9]/g, '');
+      inputCardCvc.value = val;
+      renderInputValue(creditCardCvc, val, '000', inputCardCvc)
+    }
+
+    btn.onclick = (e) => {
+      if (inputCardName.value != '' && inputCardNumber.value != '' && inputCardMonth.value != ''
+        && inputCardYear.value != '' && inputCardCvc.value != '') {
+        thankYou.style.display = "flex"
+        form.style.display = "none"
+      }
+    }
+
+
+    function renderInputValue(el, value, defaultValue, inputClass) {
+      if (value === '') {
+        el.innerHTML = defaultValue
+        inputClass.classList.add('invalid')
+        return
+      }
+      el.innerHTML = value;
+      inputClass.classList.remove('invalid')
+    }
+
+  </script>
+</body>
+
+</html>

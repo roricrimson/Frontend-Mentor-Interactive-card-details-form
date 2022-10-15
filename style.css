@@ -1,0 +1,289 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: url("./images/bg-main-desktop.png") no-repeat;
+  background-color: hsl(0, 0%, 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  font-size: 1.8rem;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.flex {
+  display: flex;
+}
+
+.margin-left {
+  margin-left: 1rem;
+}
+.credit_card {
+  position: relative;
+  width: 57rem;
+  height: 54rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.credit_card-back {
+  position: absolute;
+  bottom: 0;
+  left: 12.5rem;
+  box-shadow: 0 7rem 7rem rgba(0, 0, 0, 0.141);
+}
+
+.credit_card-front {
+  position: absolute;
+  top: 0;
+  left: 0rem;
+  box-shadow: 0 7rem 7rem rgba(0, 0, 0, 0.141);
+}
+
+.credit_card-logo {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+}
+
+.credit_card p,
+h2 {
+  color: white;
+  text-transform: uppercase;
+}
+
+.credit_card-number {
+  position: absolute;
+  top: 14rem;
+  left: 3rem;
+  letter-spacing: 0.3rem;
+}
+
+.credit_card-name {
+  position: absolute;
+  top: 20rem;
+  left: 3rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
+}
+
+.credit_card-date {
+  position: absolute;
+  top: 20.5rem;
+  left: 38rem;
+  font-size: 1.6rem;
+}
+
+.credit_card-cvc {
+  position: absolute;
+  top: 40.5rem;
+  left: 48rem;
+}
+
+form {
+  width: 100%;
+  max-width: 36rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+input {
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 0.2px solid hsl(270, 3%, 87%);
+  margin-right: 0.5rem;
+}
+
+input::placeholder {
+  color: hsl(270, 3%, 87%);
+}
+
+.invalid ~ p {
+  display: block;
+}
+
+.invalid {
+  border-color: hsl(0, 100%, 66%);
+}
+
+input:focus:invalid ~ p {
+  display: block;
+}
+
+input:focus:invalid {
+  outline: none !important;
+  border-color: hsl(0, 100%, 66%);
+}
+
+.input--large {
+  width: 35rem;
+}
+
+.input--small {
+  width: 8rem;
+}
+
+.input--medium {
+  width: 18rem;
+}
+
+form p {
+  color: hsl(278, 68%, 11%);
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  letter-spacing: 0.2rem;
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
+  margin-left: 0.5rem;
+}
+
+button {
+  width: 35rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: hsl(278, 68%, 11%);
+  color: white;
+  margin-top: 2rem;
+}
+
+.err-mesage {
+  display: none;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: hsl(0, 100%, 66%);
+}
+
+.thank-you {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 36rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.thank-you h2 {
+  color: hsl(278, 68%, 11%);
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.thank-you p {
+  color: hsl(279, 6%, 55%);
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 950px) {
+  body {
+    background: url("./images/bg-main-mobile.png") no-repeat;
+    background-size: 100vw;
+    flex-direction: column;
+  }
+
+  .credit_card {
+    width: 100%;
+    max-width: 30rem;
+    max-height: 29rem;
+  }
+
+  .credit_card-back {
+    width: 25rem;
+    top: 7.9rem;
+    left: 5rem;
+  }
+
+  .credit_card-front {
+    width: 25rem;
+    top: 15rem;
+    left: 0rem;
+  }
+
+  .credit_card-logo {
+    width: 4.5rem;
+    top: 16.5rem;
+    left: 1.5rem;
+  }
+
+  .credit_card-number {
+    top: 22rem;
+    left: 1.5rem;
+    font-size: 1.4rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .credit_card-name {
+    top: 25rem;
+    left: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .credit_card-date {
+    top: 25rem;
+    left: 19rem;
+    font-size: 0.9rem;
+  }
+
+  .credit_card-cvc {
+    top: 14rem;
+    left: 25rem;
+    font-size: 1rem;
+  }
+
+  form {
+    max-width: 37rem;
+    padding: 4rem 3rem;
+  }
+
+  .input--large {
+    width: 30rem;
+  }
+
+  .input--small {
+    width: 5rem;
+  }
+
+  .input--medium {
+    width: 14rem;
+  }
+
+  form p {
+    font-size: 0.8rem;
+  }
+
+  button {
+    width: 30rem;
+  }
+
+  .thank-you {
+    display: none;
+    max-width: 37rem;
+    padding: 4rem 3rem;
+  }
+}
+
+.attribution {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.5rem;
+  font-size: 12px;
+}
